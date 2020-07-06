@@ -26,10 +26,10 @@ function App() {
     <ThemeProvider theme={isDark? DarkTheme(): LightTheme()}>
       <CssBaseline />
       <NavBar setIsDark={setIsDark} isDark={isDark} >
-        {(c: string) => (
+        {(c: string, closeDrawer: () => void) => (
           <List className={c}>
-            {items.map((entry: NavEntry, i: number) => (
-              <ListItem button component={Link} to={entry[1]}>
+            {items.map((entry: NavEntry) => (
+              <ListItem button component={Link} onClick={closeDrawer} to={entry[1]}>
                 <ListItemText primary={entry[0]}/>
               </ListItem>
             ))}
@@ -37,7 +37,7 @@ function App() {
         )}
       </NavBar>
       <RouterSwitch>
-        {items.map((entry: NavEntry, i: number) => (
+        {items.map((entry: NavEntry) => (
           <Route exact path={entry[1]} component={routes[entry[0]]} />
         ))}
       </RouterSwitch>

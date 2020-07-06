@@ -8,7 +8,7 @@ import Brightness2Icon from '@material-ui/icons/Brightness2';
 
 
 export interface NavBarProps {
-  children: (c: string) => React.ReactNode;
+  children: (c: string, closeDrawer: () => void) => React.ReactNode;
   setIsDark: React.Dispatch<SetStateAction<boolean>>;
   isDark: boolean;
 }
@@ -57,7 +57,7 @@ function NavBar(props: NavBarProps) {
           />
         </Toolbar>
       </AppBar>
-      <Drawer anchor={'left'} open={open}>
+      <Drawer anchor={'left'} open={open} onClose={() => setOpen(false)}>
         <Toolbar className={classes.DrawerToolBar}>
           <Typography variant={'h5'} className={classes.fillSpace}>
             Runicorn
@@ -67,7 +67,7 @@ function NavBar(props: NavBarProps) {
           </IconButton>
         </Toolbar>
         <Divider />
-        {props.children(classes.List)}
+        {props.children(classes.List, () => setOpen(false))}
       </Drawer>
       <Toolbar />
     </Fragment>
