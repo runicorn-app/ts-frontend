@@ -1,13 +1,21 @@
 import React from 'react';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { Container, Grid, FormControl, Button, Typography } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-function Register() {;
+const useStyles = makeStyles((theme: Theme) => ({
+  loginPage: {
+    marginTop: theme.spacing(4),
+  }
+}));
+
+function Register() {
+  const classes = useStyles();
 
   return (
     <Container>
-      <Grid container justify={'center'}>
+      <Grid container justify={'center'} className={classes.loginPage}>
         <Formik
           initialValues={{ email: '', password: '' }}
           validate={values => {
