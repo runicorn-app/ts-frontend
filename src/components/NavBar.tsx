@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   fillSpace: {
     flex: 1,
-  }
+  },
 }));
 
 function NavBar(props: NavBarProps) {
@@ -52,8 +52,8 @@ function NavBar(props: NavBarProps) {
           <Switch
             checked={isDark}
             onChange={handleDarkSwitch}
-            icon={<WbSunnyIcon />}
-            checkedIcon={<Brightness2Icon />}
+            icon={<WbSunnyIcon fontSize={'small'} />}
+            checkedIcon={<Brightness2Icon fontSize={'small'} />}
           />
         </Toolbar>
       </AppBar>
