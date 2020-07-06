@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppBar } from "@material-ui/core";
+import React, { Fragment } from 'react';
+import { AppBar, Toolbar } from "@material-ui/core";
 
 
 export interface NavBarProps {
@@ -8,9 +8,12 @@ export interface NavBarProps {
 
 function NavBar(props: NavBarProps) {
   return (
-    <AppBar>
-      {props.children}
-    </AppBar>
+    <Fragment>
+      <AppBar>
+        {props.children}
+      </AppBar>
+      <Toolbar />
+    </Fragment>
   )
 }
 

@@ -1,17 +1,16 @@
-import React from 'react';
-
+import React from "react";
 import { Container, Box } from "@material-ui/core";
 
-function Home() {
+function Login() {
   return (
     <Container>
       <Box>
         <p>
-          Hello
+          Login Page
         </p>
       </Box>
     </Container>
   )
 }
 
-export default Home;
+export default Login;
