@@ -43,7 +43,7 @@ function NavBar(props: NavBarProps) {
     <Fragment>
       <AppBar>
         <Toolbar>
-          <IconButton color={'inherit'} onClick={() => setOpen(true)}>
+          <IconButton onClick={() => setOpen(true)}>
             <MenuIcon />
           </IconButton>
           <Typography variant={'h6'} className={classes.Title}>
