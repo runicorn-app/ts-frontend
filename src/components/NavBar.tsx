@@ -1,11 +1,10 @@
 import React, { Fragment, useState, SetStateAction } from 'react';
-import { AppBar, Drawer, Switch, Toolbar, Divider, IconButton, Typography } from "@material-ui/core";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { AppBar, Drawer, Switch, Toolbar, Divider, IconButton, Typography } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import MenuIcon from '@material-ui/icons/Menu';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
-
 
 export interface NavBarProps {
   children: (c: string, closeDrawer: () => void) => React.ReactNode;
