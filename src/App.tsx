@@ -1,10 +1,12 @@
 import React, { FunctionComponent, SetStateAction, useState } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import { CssBaseline, List, ListItem, ListItemText, Theme } from '@material-ui/core';
+import { CssBaseline, List, ListItem, ListItemText, Theme, Divider } from '@material-ui/core';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
-import Login from './components/Login';
+import Login from './pages/Login';
+import Runs from './pages/Runs';
+import Register from './pages/Register';
 
 
 function App() {
@@ -13,30 +15,61 @@ function App() {
 
   type NavEntry = readonly [string, string];
 
-  const items: NavEntry[] = [
+  const publicRoutes: NavEntry[] = [
     ['Home', '/'],
+  ]
+
+  const loggedInRoutes: NavEntry[] = [
+    ['Runs', '/runs'],
+  ]
+
+  const loggedOutRoutes: NavEntry[] = [
+    ['Register', '/register'],
     ['Login', '/login'],
   ]
 
   const routes: Record<string, FunctionComponent > = {
     'Home': Home,
-    'Login': Login
+    'Login': Login,
+    'Runs': Runs,
+    'Register': Register,
   };
+
+  const LoggedInItems = ({ closeDrawer }: { closeDrawer: () => void }) => (
+    <React.Fragment>
+      {loggedInRoutes.map((entry: NavEntry) => (
+          <ListItem button component={Link} onClick={closeDrawer} to={entry[1]}>
+            <ListItemText primary={entry[0]}/>
+          </ListItem>
+      ))}
+    </React.Fragment>
+  );
+
+  const LoggedOutItems = ({ closeDrawer }: { closeDrawer: () => void })  => (
+    <React.Fragment>
+      {loggedOutRoutes.map((entry: NavEntry) => (
+        <ListItem button component={Link} onClick={closeDrawer} to={entry[1]}>
+          <ListItemText primary={entry[0]}/>
+        </ListItem>
+      ))}
+    </React.Fragment>
+  );
 
   const DefaultNavBar = (
     <NavBar setIsDark={setIsDark} isDark={isDark} >
       {(c: string, closeDrawer: () => void) => (
         <List className={c}>
-          {items.map((entry: NavEntry) => (
+          {publicRoutes.map((entry: NavEntry) => (
             <ListItem button component={Link} onClick={closeDrawer} to={entry[1]}>
               <ListItemText primary={entry[0]}/>
             </ListItem>
           ))}
-          {loggedIn? null: null}
+          <Divider />
+          {loggedIn? <LoggedInItems closeDrawer={closeDrawer} />: <LoggedOutItems closeDrawer={closeDrawer} />}
         </List>
       )}
     </NavBar>
-)
+  );
 
 
   return (
@@ -46,7 +79,7 @@ function App() {
         {DefaultNavBar}
       </Switch>
       <Switch>
-        {items.map((entry: NavEntry) => (
+        {[...publicRoutes, ...loggedInRoutes, ...loggedOutRoutes].map((entry: NavEntry) => (
           <Route exact path={entry[1]} component={routes[entry[0]]} />
         ))}
       </Switch>

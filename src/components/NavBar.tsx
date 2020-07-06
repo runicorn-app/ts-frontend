@@ -5,6 +5,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import MenuIcon from '@material-ui/icons/Menu';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
+import { yellow } from '@material-ui/core/colors';
 
 export interface NavBarProps {
   children: (c: string, closeDrawer: () => void) => React.ReactNode;
@@ -51,8 +52,8 @@ function NavBar(props: NavBarProps) {
           <Switch
             checked={isDark}
             onChange={handleDarkSwitch}
-            icon={<WbSunnyIcon fontSize={'small'} />}
-            checkedIcon={<Brightness2Icon fontSize={'small'} />}
+            icon={<WbSunnyIcon style={{ color: yellow[500] }} fontSize={'small'} />}
+            checkedIcon={<Brightness2Icon style={{ color: yellow[200] }} fontSize={'small'} />}
           />
         </Toolbar>
       </AppBar>
