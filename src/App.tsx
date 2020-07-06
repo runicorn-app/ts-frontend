@@ -6,13 +6,13 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './components/Login';
 
-const DarkTheme = createMuiTheme({
+const DarkTheme = () => createMuiTheme({
     palette: {
       type: "dark",
     },
 });
 
-const LightTheme = createMuiTheme({
+const LightTheme = () => createMuiTheme({
   palette: {
     type: "light",
   },
@@ -21,8 +21,12 @@ const LightTheme = createMuiTheme({
 function App() {
   let [isDark, setIsDark]: [boolean, React.Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
 
+  function handleDarkSwitch(e: React.ChangeEvent<HTMLInputElement>) {
+    setIsDark(e.target.checked);
+  }
+
   return (
-    <ThemeProvider theme={isDark? DarkTheme: LightTheme}>
+    <ThemeProvider theme={isDark? DarkTheme(): LightTheme()}>
       <CssBaseline />
       <NavBar>
         <Toolbar>
@@ -34,7 +38,7 @@ function App() {
           </Button>
           <Switch
             checked={isDark}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsDark(e.target.checked) }
+            onChange={handleDarkSwitch}
           />
         </Toolbar>
       </NavBar>
