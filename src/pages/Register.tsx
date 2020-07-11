@@ -5,7 +5,7 @@ import { TextField } from 'formik-material-ui';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  loginPage: {
+  registerPage: {
     marginTop: theme.spacing(4),
   }
 }));
@@ -15,7 +15,7 @@ function Register() {
 
   return (
     <Container>
-      <Grid container justify={'center'} className={classes.loginPage}>
+      <Grid container justify={'center'} className={classes.registerPage}>
         <Formik
           initialValues={{ email: '', password: '' }}
           validate={values => {
