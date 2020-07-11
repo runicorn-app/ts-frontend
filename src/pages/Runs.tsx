@@ -1,6 +1,7 @@
+/*
 import React from 'react';
 import { Container, Box } from '@material-ui/core';
-import { Formik, ErrorMessage, Form, Field, } from 'formik';
+import { Formik, ErrorMessage, Form, Field } from 'formik';
 
 function Runs() {
   return (
@@ -8,7 +9,7 @@ function Runs() {
       <Box>
         <Formik
           initialValues={{ email: '', password: '' }}
-          validate={values => {
+          validate={(values) => {
             const errors: Record<string, string> = {};
             if (!values.email) {
               errors.email = 'Required';
@@ -28,11 +29,11 @@ function Runs() {
         >
           {({ isSubmitting }) => (
             <Form>
-              <Field type="email" name="email" />
-              <ErrorMessage name="email" component="div" />
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
-              <button type="submit" disabled={isSubmitting}>
+              <Field type='email' name='email' />
+              <ErrorMessage name='email' component='div' />
+              <Field type='password' name='password' />
+              <ErrorMessage name='password' component='div' />
+              <button type='submit' disabled={isSubmitting}>
                 Submit
               </button>
             </Form>
@@ -40,7 +41,29 @@ function Runs() {
         </Formik>
       </Box>
     </Container>
-  )
+  );
 }
+
+export default Runs;
+*/
+
+import React from 'react';
+import {
+  Inject,
+  ScheduleComponent,
+  Day,
+  Week,
+  WorkWeek,
+  Month,
+  Agenda,
+} from '@syncfusion/ej2-react-schedule';
+
+export const Runs = () => {
+  return (
+    <ScheduleComponent currentView='Month'>
+      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+    </ScheduleComponent>
+  );
+};
 
 export default Runs;
